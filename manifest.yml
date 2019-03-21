@@ -1,0 +1,7 @@
+name: ws-flare-test-server
+instances: 1
+memory: 128M
+buildpack: nodejs_buildpack
+command: node .
+env:
+  NODE_ENV: production

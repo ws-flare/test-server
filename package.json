@@ -1,0 +1,11 @@
+{
+  "name": "test-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ws-flare/test-server.git",
+  "author": "el-davo <david.ahern@emc.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^6.2.0"
+  }
+}
