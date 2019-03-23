@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-const ws = new WebSocket('ws://ws-test-1.herokuapp.com');
+const ws = new WebSocket('wss://ws-flare-test-server.cfapps.io:4443');
 
 ws.on('open', function () {
     console.log('Connected');
