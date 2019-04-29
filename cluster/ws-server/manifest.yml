@@ -1,0 +1,7 @@
+name: ws-flare-cluster-ws
+instances: 1
+memory: 128M
+buildpack: nodejs_buildpack
+command: node ws-server.js
+env:
+  NODE_ENV: production
