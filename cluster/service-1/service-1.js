@@ -1,12 +1,15 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 3000;
+const superagent = require('superagent');
+const port = process.env.PORT || 3000;
 
-let counter = 0;
-
-app.get('/endpoint1', (req, res) => {
-    counter++;
-    res.json({message: `Hello ${counter}`});
+app.get('/endpoint', (_, res) => {
+    superagent
+        .get(`https://ws-flare-cluster-service-2.cfapps.io/endpoint`)
+        .set('X-B3-TraceId', 'foobar')
+        .end((_, response) => {
+            res.json(response.body);
+        });
 });
 
 app.listen(port, () => console.log(`listening on port ${port}!`));

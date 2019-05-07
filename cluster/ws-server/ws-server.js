@@ -8,13 +8,17 @@ const wss = new WebSocket.Server({noServer: true});
 wss.on('connection', (ws) => {
     console.log('new connection');
 
-    superagent
-        .get(`http://ws-flare-service1.cfapps.io/endpoint1`)
-        .end((err, res) => {
-            ws.send(res.body);
-        });
+    const interval = setInterval(() => {
+        superagent
+            .get(`https://ws-flare-cluster-service-1.cfapps.io/endpoint`)
+            .set('X-B3-TraceId', 'foobar')
+            .end((err, res) => {
+                ws.send(JSON.stringify(res.body));
+            });
+    }, 5000);
 
     ws.on('close', () => {
+        clearInterval(interval);
         console.log('connection dropped');
     });
 });
